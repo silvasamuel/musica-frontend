@@ -1,3 +1,21 @@
-<p>
-  musica works!
-</p>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Music name</th>
+        <th scope="col">Artist name</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let musica of musicas">
+        <td>{{ musica.nome }}</td>
+        <td>{{ musica.artista.nome }}</td>
+        <td>
+          <input type="checkbox" [checkMusic] = "musica.checked"/>
+        </td>
+        <td>
+          {{ musica.checked }}
+        </td>
+      </tr>
+    </tbody>
+  </table>

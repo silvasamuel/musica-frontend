@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MusicaService } from './../musica.service';
+import { Musica } from '../models/musica.model';
 
 @Component({
   selector: 'app-topo',
@@ -7,18 +9,16 @@ import { MusicaService } from './../musica.service';
   styleUrls: ['./topo.component.css']
 })
 export class TopoComponent implements OnInit {
+  
+  @Output() topoSearch = new EventEmitter();
+  
+  constructor() { }
 
-  constructor(private musicaService: MusicaService) { }
+  public musicas:Musica[];
+  
 
   ngOnInit() {
-  }
 
-  buscarMusica(musica:string){
-    console.log(musica);
-    this.musicaService.getMusicas(musica).subscribe((musicas) => {
-      console.log(musicas);
-    }
-  );
-  }
 
+  }
 }

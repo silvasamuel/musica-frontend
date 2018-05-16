@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import { Musica } from './models/musica.model';
 
 const API_URL = "https://intense-ocean-93206.herokuapp.com";
 
@@ -19,7 +20,7 @@ export class MusicaService {
   }
 
   // API: GET /Prato
-  public getMusicas(musica): Observable<any[]>  {
+  public getMusicas(musica): Observable<Musica[]>  {
 
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
