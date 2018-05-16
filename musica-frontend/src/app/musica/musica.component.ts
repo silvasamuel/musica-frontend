@@ -1,5 +1,5 @@
 import { Musica } from './../models/musica.model';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-musica',
@@ -9,15 +9,17 @@ import { Component, OnInit, Input } from '@angular/core';
 export class MusicaComponent implements OnInit {
 
   public checkMusic: Boolean;
-
   constructor() { }
 
-  @Input() musicas: Musica[]
+  @Input() @Output() musicas: Musica[]
 
   ngOnInit() {
     console.log(this.musicas)
   }
 
+  checkedMusic(musica: Musica){
+    musica.checked = !musica.checked;
+  }
   // set checkMusic(value){
   //   console.log(value);
   // }

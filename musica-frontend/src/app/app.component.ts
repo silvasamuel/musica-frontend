@@ -21,10 +21,8 @@ export class AppComponent {
     
 
   public buscarMusica(event){
-    console.log(event);
     if(event.keyCode == 13){
 
-      console.log(event.target.value);
         let filter = event.target.value;
 
         this.musicaService.getMusicas(filter).subscribe((musicas) => {
@@ -33,6 +31,10 @@ export class AppComponent {
         }
       );
     }
+  }
+
+  public incluirMusicasPlaylist(event) {
+    console.log(event.target.value);
   }
 }
 
