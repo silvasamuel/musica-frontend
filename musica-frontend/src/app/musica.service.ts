@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -5,6 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { Musica } from './models/musica.model';
+import { Playlist } from './models/playlist.model';
 
 const API_URL = "https://intense-ocean-93206.herokuapp.com";
 
@@ -31,6 +33,23 @@ export class MusicaService {
     // will use this.http.get()
     return this.http
     .get(API_URL + '/api/musicas/?filtro=' + musica)
+    .map(response => {
+      const pratos = response.json();
+      return response.json();
+    })
+    .catch(this.handleError);
+  }
+
+  public getPlaylist(usuario): Observable<Playlist>{
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Access-Control-Allow-Origin', 'http://localhost:4200');
+
+    const options = new RequestOptions({ headers: headers });
+
+    // will use this.http.get()
+    return this.http
+    .get(API_URL + '/api/playlists/?user=' + usuario)
     .map(response => {
       const pratos = response.json();
       return response.json();

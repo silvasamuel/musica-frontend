@@ -10,7 +10,8 @@ import { Musica } from '../models/musica.model';
 })
 export class TopoComponent implements OnInit {
   
-  @Output() topoSearch = new EventEmitter();
+  @Output() topoMusicSearch = new EventEmitter();
+  @Output() topoPlaylistSearch = new EventEmitter();
   
   constructor() { }
 
