@@ -11,7 +11,6 @@ export class MusicaComponent implements OnInit {
   public checkMusic: Boolean;
   constructor() { }
 
-  @Output() listaTemp: Musica[]
   @Input() @Output() musicas: Musica[]
 
   ngOnInit() {
