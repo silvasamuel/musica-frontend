@@ -1,27 +1,8 @@
-export class Playlist{
-    
-}
+import { Usuario } from './usuario.model';
+import { Musica } from './musica.model';
 
-// {
-//     "id": "string",
-//     "playlistMusicas": [
-//       {
-//         "musica": {
-//           "artista": {
-//             "id": "string",
-//             "nome": "string"
-//           },
-//           "artistaId": "string",
-//           "id": "string",
-//           "nome": "string"
-//         },
-//         "musicaId": "string",
-//         "playlistId": "string"
-//       }
-//     ],
-//     "usuario": {
-//       "id": "string",
-//       "nome": "string",
-//       "playlistId": "string"
-//     }
-//   }
+export class Playlist {
+    public id: String;
+    public playlistMusicas: Musica[];
+    public usuario: Usuario;
+}

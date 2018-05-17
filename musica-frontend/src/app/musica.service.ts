@@ -7,8 +7,9 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { Musica } from './models/musica.model';
 import { Playlist } from './models/playlist.model';
+import { $ } from 'protractor';
 
-const API_URL = "https://intense-ocean-93206.herokuapp.com";
+const API_URL = 'https://intense-ocean-93206.herokuapp.com';
 
 @Injectable()
 export class MusicaService {
@@ -21,7 +22,6 @@ export class MusicaService {
     return Observable.throw(error);
   }
 
-  // API: GET /Prato
   public getMusicas(musica): Observable<Musica[]>  {
 
     const headers = new Headers();
@@ -32,15 +32,14 @@ export class MusicaService {
 
     // will use this.http.get()
     return this.http
-    .get(API_URL + '/api/musicas/?filtro=' + musica)
+    .get(`${API_URL}/api/musicas/?filtro=${musica}`)
     .map(response => {
-      const pratos = response.json();
       return response.json();
     })
     .catch(this.handleError);
   }
 
-  public getPlaylist(usuario): Observable<Playlist>{
+  public getPlaylist(usuario): Observable<Playlist> {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Access-Control-Allow-Origin', 'http://localhost:4200');
@@ -49,14 +48,39 @@ export class MusicaService {
 
     // will use this.http.get()
     return this.http
-    .get(API_URL + '/api/playlists/?user=' + usuario)
+    .get(`${API_URL}/api/playlists/?user=${usuario}`)
     .map(response => {
-      const pratos = response.json();
       return response.json();
     })
     .catch(this.handleError);
   }
 
+  public setMusicasPlaylist(musicas: Musica[], playlistId) {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Access-Control-Allow-Origin', 'http://localhost:4200');
 
+    const options = new RequestOptions({ headers: headers });
+
+    return this.http.put(`${API_URL}/api/playlists/${playlistId}/musicas`, musicas)
+    .map(response => {
+      return response.json();
+    })
+    .catch(this.handleError);
+  }
+
+  public deleteMusicasPlaylist(musica: string, playlistId) {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Access-Control-Allow-Origin', 'http://localhost:4200');
+
+    const options = new RequestOptions({ headers: headers });
+
+    return this.http.delete(`${API_URL}/api/playlists/${playlistId}/musicas/${musica}`)
+    .map(response => {
+      return response.json();
+    })
+    .catch(this.handleError);
+  }
 
 }

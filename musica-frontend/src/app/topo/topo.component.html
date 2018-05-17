@@ -4,14 +4,14 @@
         <div class="col-md-5">
           <div class="form-group">
               <label for="MusicOrArtist">Music or Artist</label>
-              <input type="text" class="form-control" (keyup) = "topoMusicSearch.emit($event)"/>
+              <input type="text" class="form-control" (keyup.enter)="topoMusicSearch.emit($event)"/>
           </div>
        </div>
        <div class="col-md-1"></div>
        <div class="col-md-5">
           <div class="form-group">
             <label for="User">User</label>
-            <input type="text" class="form-control" (keyup) = "topoPlaylistSearch.emit($event)"/>
+            <input type="text" class="form-control" (keyup.enter) = "topoPlaylistSearch.emit($event)"/>
           </div>
         </div>
         </div>

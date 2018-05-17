@@ -11,16 +11,13 @@ export class MusicaComponent implements OnInit {
   public checkMusic: Boolean;
   constructor() { }
 
-  @Input() @Output() musicas: Musica[]
+  @Input() @Output() musicas: Musica[];
 
   ngOnInit() {
-    console.log(this.musicas)
+    console.log(this.musicas);
   }
 
-  checkedMusic(musica: Musica){
+  checkedMusic(musica: Musica) {
     musica.checked = !musica.checked;
   }
-  // set checkMusic(value){
-  //   console.log(value);
-  // }
 }

@@ -12,48 +12,60 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'app';
 
-  private musicasLista: Musica[]
-  private playlist: Playlist
+  private musicasLista: Musica[];
+  private playlist: Playlist;
 
   constructor(private musicaService: MusicaService) { }
 
-  ngOnInit() {
-    console.log(this.musicasLista);
-  }
-    
+  public buscarMusica(event: KeyboardEvent) {
+    const filter = (<HTMLInputElement>event.target).value;
 
-  public buscarMusica(event){
-    if(event.keyCode == 13){
-
-        let filter = event.target.value;
-
-        this.musicaService.getMusicas(filter).subscribe((musicas) => {
-          this.musicasLista = musicas;
-          console.log(musicas);
-        }
-      );
-    }
+    this.musicaService.getMusicas(filter).subscribe((musicas) => {
+      this.musicasLista = musicas;
+      console.log(musicas);
+    });
   }
 
-  public buscarPlaylist(event){
-    if(event.keyCode == 13){
+  public buscarPlaylist(event: KeyboardEvent) {
+    const filter = (<HTMLInputElement>event.target).value;
 
-        let filter = event.target.value;
-
-        this.musicaService.getPlaylist(filter).subscribe((playlist) => {
-          this.playlist = playlist;
-          console.log(playlist);
-        }
-      );
-    }
+    this.musicaService.getPlaylist(filter).subscribe((playlist) => {
+      this.playlist = playlist;
+      console.log(this.playlist);
+    });
   }
 
   public incluirMusicasPlaylist(event) {
-    console.log(this.musicasLista);
+    const selectedMusics: Musica[] = this.musicasLista.filter(musica => musica.checked );
+
+    console.log(selectedMusics);
+
+    this.musicaService.setMusicasPlaylist(selectedMusics, this.playlist.id).subscribe((response) => {
+      console.log(response);
+    });
   }
 
   public removerMusicasPlaylist(event) {
-    console.log(this.musicasLista);
+    // tslint:disable-next-line:prefer-const
+    let selectedMusics: Musica[];
+
+    // this.playlist.playlistMusicas.forEach(object => {
+    //   if (object.musica.checked) {
+    //     selectedMusics.push(object);
+    //   }
+    // });
+
+    // const selectedMusics = this.playlist.playlistMusicas.filter(musica => {
+    //   if (musica.checked) {
+    //     return musica;
+    //   }
+    // });
+
+    console.log(selectedMusics);
+
+    // this.musicaService.setMusicasPlaylist(selectedMusics, this.playlist.id).subscribe((response) => {
+    //   console.log(response);
+    // });
   }
 }
 
