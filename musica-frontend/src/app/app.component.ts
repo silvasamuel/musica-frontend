@@ -2,6 +2,7 @@ import { Playlist } from './models/playlist.model';
 import { MusicaService } from './musica.service';
 import { Musica } from './models/musica.model';
 import { Component } from '@angular/core';
+import { PlaylistMusicas } from './models/playlistMusicas.model';
 
 
 @Component({
@@ -22,7 +23,6 @@ export class AppComponent {
 
     this.musicaService.getMusicas(filter).subscribe((musicas) => {
       this.musicasLista = musicas;
-      console.log(musicas);
     });
   }
 
@@ -31,41 +31,32 @@ export class AppComponent {
 
     this.musicaService.getPlaylist(filter).subscribe((playlist) => {
       this.playlist = playlist;
-      console.log(this.playlist);
     });
   }
 
   public incluirMusicasPlaylist(event) {
+    if (!this.playlist) {
+      alert('Favor buscar uma playlist para incluir a(s) música(s) selecionada(s)!');
+      return;
+    }
+
     const selectedMusics: Musica[] = this.musicasLista.filter(musica => musica.checked );
 
-    console.log(selectedMusics);
-
     this.musicaService.setMusicasPlaylist(selectedMusics, this.playlist.id).subscribe((response) => {
-      console.log(response);
+      alert('Musica incluida com sucesso!!');
+
+      selectedMusics.forEach(item => {
+        this.playlist.playlistMusicas.push(new PlaylistMusicas(item, item.id, ''));
+      });
     });
   }
 
   public removerMusicasPlaylist(event) {
-    // tslint:disable-next-line:prefer-const
-    let selectedMusics: Musica[];
+    const selectedMusic = this.playlist.playlistMusicas.filter(item => item.musica.checked);
 
-    // this.playlist.playlistMusicas.forEach(object => {
-    //   if (object.musica.checked) {
-    //     selectedMusics.push(object);
-    //   }
-    // });
-
-    // const selectedMusics = this.playlist.playlistMusicas.filter(musica => {
-    //   if (musica.checked) {
-    //     return musica;
-    //   }
-    // });
-
-    console.log(selectedMusics);
-
-    // this.musicaService.setMusicasPlaylist(selectedMusics, this.playlist.id).subscribe((response) => {
-    //   console.log(response);
-    // });
+    this.musicaService.deleteMusicasPlaylist(selectedMusic[0].musica.id, this.playlist.id).subscribe((response) => {
+      alert('Musica removida da playlist com sucesso!!');
+    });
   }
 }
 

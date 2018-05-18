@@ -64,12 +64,12 @@ export class MusicaService {
 
     return this.http.put(`${API_URL}/api/playlists/${playlistId}/musicas`, musicas)
     .map(response => {
-      return response.json();
+      return response;
     })
     .catch(this.handleError);
   }
 
-  public deleteMusicasPlaylist(musica: string, playlistId) {
+  public deleteMusicasPlaylist(musica: String, playlistId) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Access-Control-Allow-Origin', 'http://localhost:4200');
@@ -78,7 +78,7 @@ export class MusicaService {
 
     return this.http.delete(`${API_URL}/api/playlists/${playlistId}/musicas/${musica}`)
     .map(response => {
-      return response.json();
+      return response;
     })
     .catch(this.handleError);
   }

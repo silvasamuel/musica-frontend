@@ -12,7 +12,7 @@
         <td>{{ object.musica.nome }}</td>
         <td>{{ object.musica.artista.nome }}</td>
         <td>
-            <input type="radio" (click)="checkedMusic(object.musica)"/>
+            <input type="checkbox" (click)="checkedMusic(object.musica)" [(ngModel)]="object.musica.checked" />
         </td>
       </tr>
     </tbody>
