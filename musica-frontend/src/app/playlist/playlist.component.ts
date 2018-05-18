@@ -19,7 +19,11 @@ export class PlaylistComponent implements OnInit {
   }
 
   checkedMusic(musica: Musica) {
-    musica.checked = !musica.checked;
+    this.playlist.playlistMusicas.forEach((item) => {
+        if (musica.id !== item.musica.id) {
+          item.musica.checked = false;
+        }
+      });
   }
 
 }
