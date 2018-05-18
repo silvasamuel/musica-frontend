@@ -3,7 +3,7 @@
     (topoMusicSearch)="buscarMusica($event)"
     (topoPlaylistSearch)="buscarPlaylist($event)" 
 ></app-topo>
-<div class="col-md-12">
+<div class="container">
     <div class="row">
     
         <div class="col-md-5">
@@ -18,8 +18,8 @@
             </app-controles>
         </div>
 
-        <div class="col-md-5">
-                <app-playlist [playlist]="playlist"></app-playlist>
+        <div class="col-md-6">
+            <app-playlist [playlist]="playlist"></app-playlist>
         </div>
     </div>
 </div>
