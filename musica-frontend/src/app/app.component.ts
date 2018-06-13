@@ -55,7 +55,7 @@ export class AppComponent {
     const selectedMusic = this.playlist.playlistMusicas.filter(item => item.musica.checked);
 
     this.musicaService.deleteMusicasPlaylist(selectedMusic[0].musica.id, this.playlist.id).subscribe((response) => {
-      alert('Musica removida da playlist com sucesso!!');
+      alert('Music removed successfully!!');
     });
   }
 }
