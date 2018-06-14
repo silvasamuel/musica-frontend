@@ -43,7 +43,7 @@ export class AppComponent {
     const selectedMusics: Musica[] = this.musicasLista.filter(musica => musica.checked );
 
     this.musicaService.setMusicasPlaylist(selectedMusics, this.playlist.id).subscribe((response) => {
-      alert('Musica incluida com sucesso!!');
+      alert('Music added successfully!!');
 
       selectedMusics.forEach(item => {
         this.playlist.playlistMusicas.push(new PlaylistMusicas(item, item.id, ''));
